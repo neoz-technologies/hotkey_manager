@@ -58,7 +58,7 @@ class _GlobalShortcutsState extends State<GlobalShortcuts> {
     _registeredHotKeys.clear();
   }
 
-  void _onKeyDown(HotKey hotKey) {
+  bool _onKeyDown(HotKey hotKey) {
     final activator = widget.shortcuts.keys.firstWhere(
       (activator) => activator._toHotKey().identifier == hotKey.identifier,
     );
@@ -77,9 +77,11 @@ class _GlobalShortcutsState extends State<GlobalShortcuts> {
         );
         if (enabled) {
           action.toKeyEventResult(matchedIntent, invokeResult);
+          return true;
         }
       }
     }
+    return false;
   }
 
   @override
@@ -128,11 +130,12 @@ class _CallbackGlobalShortcutsState extends State<CallbackGlobalShortcuts> {
     _registeredHotKeys.clear();
   }
 
-  void _onKeyDown(HotKey hotKey) {
+  bool _onKeyDown(HotKey hotKey) {
     final activator = bindings.keys.firstWhere(
       (activator) => activator._toHotKey().identifier == hotKey.identifier,
     );
     bindings[activator]!.call();
+    return true;
   }
 
   @override

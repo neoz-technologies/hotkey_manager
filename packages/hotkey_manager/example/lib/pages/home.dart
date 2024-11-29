@@ -26,20 +26,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<HotKey> _registeredHotKeyList = [];
 
-  void _keyDownHandler(HotKey hotKey) {
+  bool _keyDownHandler(HotKey hotKey) {
     String log = 'keyDown ${hotKey.debugName} (${hotKey.scope})';
     BotToast.showText(text: log);
     if (kDebugMode) {
       print(log);
     }
+    return true;
   }
 
-  void _keyUpHandler(HotKey hotKey) {
+  bool _keyUpHandler(HotKey hotKey) {
     String log = 'keyUp   ${hotKey.debugName} (${hotKey.scope})';
     BotToast.showText(text: log);
     if (kDebugMode) {
       print(log);
     }
+    return true;
   }
 
   Future<void> _handleHotKeyRegister(HotKey hotKey) async {
