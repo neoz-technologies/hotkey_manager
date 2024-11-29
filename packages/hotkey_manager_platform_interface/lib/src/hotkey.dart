@@ -8,7 +8,7 @@ part 'hotkey.g.dart';
 
 const _uuid = Uuid();
 
-typedef HotKeyHandler = void Function(HotKey hotKey);
+typedef HotKeyHandler = bool Function(HotKey hotKey);
 
 enum HotKeyModifier {
   alt([

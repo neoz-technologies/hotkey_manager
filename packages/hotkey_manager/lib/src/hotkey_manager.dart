@@ -75,12 +75,16 @@ class HotKeyManager {
             modifiers.every((e.modifiers ?? []).contains);
       });
       if (hotKeys.isNotEmpty) {
+        bool handled = false;
+
         for (final hotKey in hotKeys) {
           HotKeyHandler? handler = _keyDownHandlerMap[hotKey.identifier];
-          if (handler != null) handler(hotKey);
+          if (handler != null) {
+            handled = handler(hotKey) || handled;
+          }
         }
         _lastPressedHotKey = hotKeys.last;
-        return true;
+        return handled;
       }
     }
     return false;
