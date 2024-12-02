@@ -12,7 +12,7 @@ dependencies:
     sdk: flutter
   hotkey_manager:
     path: ../
-  preference_list: ^0.0.1
+  preference_list: ^0.0.2
 
 dev_dependencies:
   flutter_test:
